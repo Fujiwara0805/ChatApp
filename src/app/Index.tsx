@@ -1,7 +1,7 @@
 import { Redirect } from 'expo-router'
 
 const Index = (): JSX.Element => {
-  return <Redirect href={'chat/ChatListScreen'}/>
+  return <Redirect href={'screens/List'}/>
 }
 
 export default Index
