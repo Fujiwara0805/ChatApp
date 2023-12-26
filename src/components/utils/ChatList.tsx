@@ -4,17 +4,17 @@ import { router } from 'expo-router'
 
 /* 画面遷移の挙動 */
 const handlePress = (): void => {
-  router.push('screens/Create')
+  router.push('chat/ChatCreateScreen')
 }
 interface Props {
   title: string
   onChange: () => void
 }
-const ChatList = (props: Props): JSX.Element => {
+const ChatList = ({ title, onChange }: Props): JSX.Element => {
   return (
     <View style={styles.chatListItem}>
       <TouchableOpacity onPress={handlePress}>
-        <TextInput style={styles.chatListTitle} onChangeText={() => { props.onChange() }}>{props.title}</TextInput>
+        <TextInput style={styles.chatListTitle} onChangeText={() => { onChange() }}>{title}</TextInput>
         <Text style={[styles.chatListDate, { marginTop: 8 }]}>2023年10月21日</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.deleteIcon}>
