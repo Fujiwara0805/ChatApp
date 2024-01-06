@@ -34,5 +34,5 @@ export const useFetchData = () => {
       console.error('通信エラーが発生しました', error)
     }
   }
-  return { messages, userInput, setUserInput, fetchChatResponse }
+  return { messages, setMessages, userInput, setUserInput, fetchChatResponse }
 }
