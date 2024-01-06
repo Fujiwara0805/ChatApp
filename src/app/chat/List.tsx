@@ -1,27 +1,34 @@
-import { View, StyleSheet } from 'react-native'
-import ChatList from '../../components/utils/ChatList'
+import { View, StyleSheet, ScrollView } from 'react-native'
+/* components */
 import CircleButton from '../../components/utils/CircleButton'
+import { ChatList } from '../../components/utils/ChatList'
 import { Feather } from '@expo/vector-icons'
 import { router } from 'expo-router'
 import { useState } from 'react'
 
-const handlePress = (): void => {
-  router.push('screens/ChatCreateScreen')
+/* Create画面へ画面遷移 */
+const navigateToCreate = (): void => {
+  router.push('chat/Create')
 }
 
 const List = (): JSX.Element => {
-  const [title, setTittle] = useState('foo')
-
-  const handleChatListTextChange = () => {
+  /* 状態管理 */
+  const [title, setTittle] = useState('Foo')
+  /* title変更 */
+  const handleChatListChange = () => {
     setTittle(title)
   }
-
   return (
     <View style={styles.container}>
-      <View>
-        <ChatList title={title} onChange={handleChatListTextChange}/>
-      </View>
-      <CircleButton onPress={handlePress}>
+      <ScrollView>
+        <ChatList title={title} onLabelChange={handleChatListChange}/>
+        <ChatList title={title} onLabelChange={handleChatListChange}/>
+        <ChatList title={title} onLabelChange={handleChatListChange}/>
+        <ChatList title={title} onLabelChange={handleChatListChange}/>
+        <ChatList title={title} onLabelChange={handleChatListChange}/>
+        <ChatList title={title} onLabelChange={handleChatListChange}/>
+      </ScrollView>
+      <CircleButton onPress={navigateToCreate}>
         <Feather name='plus' size={40}/>
       </CircleButton>
     </View>
@@ -33,6 +40,6 @@ export default List
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#E5E5E5'
+    backgroundColor: 'skyblue'
   }
 })

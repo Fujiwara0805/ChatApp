@@ -1,36 +1,43 @@
-import { View, StyleSheet, Text, TouchableOpacity, TextInput } from 'react-native'
+import { View, StyleSheet, Text, TouchableOpacity, TextInput, Alert } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 import { router } from 'expo-router'
 
-/* 画面遷移の挙動 */
-const handlePress = (): void => {
-  router.push('chat/ChatCreateScreen')
-}
 interface Props {
   title: string
-  onChange: () => void
+  onLabelChange: () => void
 }
-const ChatList = ({ title, onChange }: Props): JSX.Element => {
+/* 画面遷移の挙動 */
+const handlePress = (): void => {
+  router.push('chat/Create')
+}
+const handleDetele = () => {
+  Alert.alert('Really?')
+}
+
+export const ChatList = ({ title, onLabelChange }: Props): JSX.Element => {
   return (
     <View style={styles.chatListItem}>
-      <TouchableOpacity onPress={handlePress}>
-        <TextInput style={styles.chatListTitle} onChangeText={() => { onChange() }}>{title}</TextInput>
-        <Text style={[styles.chatListDate, { marginTop: 8 }]}>2023年10月21日</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.deleteIcon}>
-        <Text><Feather name='trash' size={20}/></Text>
-      </TouchableOpacity>
+      <View>
+        <TextInput style={styles.chatListTitle} onPressIn={onLabelChange}>{title}</TextInput>
+        <Text style={[styles.chatListDate, { marginTop: 8 }]}>{new Date().toLocaleDateString()}</Text>
+      </View>
+      <View style={styles.IconItems}>
+        <TouchableOpacity style={styles.Icon} onPress={handlePress}>
+          <Feather name='edit' size={20}/>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.Icon} onPress={handleDetele}>
+          <Feather name='trash' size={20}/>
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }
 
-export default ChatList
-
-/* style */
+/* styles */
 const styles = StyleSheet.create({
   chatListItem: {
     flexDirection: 'row',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: 'white',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingVertical: 16,
@@ -48,8 +55,10 @@ const styles = StyleSheet.create({
     lineHeight: 16,
     color: '#848484'
   },
-  deleteIcon: {
+  Icon: {
     padding: 8
+  },
+  IconItems: {
+    flexDirection: 'row'
   }
-
 })

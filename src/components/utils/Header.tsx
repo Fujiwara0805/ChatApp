@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from 'react-native'
 
-const Header = (): JSX.Element => {
+export const Header = (): JSX.Element => {
   return (
     <View style={styles.appBar}>
       <View style={styles.appBarInner}>
@@ -10,8 +10,6 @@ const Header = (): JSX.Element => {
     </View>
   )
 }
-
-export default Header
 
 const styles = StyleSheet.create({
   /* Header */
